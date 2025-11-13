@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savdo Karzinka</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 15px;
+      width: 300px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      text-align: center;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    button {
+      background: #00c6ff;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0072ff;
+      transform: scale(1.05);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .total {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🛒 Savdo Karzinka</h2>
+    <input type="text" id="name" placeholder="Mahsulot nomi" />
+    <input type="number" id="price" placeholder="Narxi (so'm)" />
+    <div>
+      <button onclick="addItem()">Qo‘shish</button>
+      <button onclick="clearCart()">Tozalash</button>
+    </div>
+    <ul id="list"></ul>
+    <div class="total" id="total">Jami: 0 so‘m</div>
+  </div>
+
+  <script>
+    const cart = { items: [] };
+
+    function addItem() {
+      const name = document.getElementById("name").value.trim();
+      const price = parseFloat(document.getElementById("price").value);
+
+      if (!name || isNaN(price) || price <= 0) {
+        alert("❌ Iltimos, to‘g‘ri ma’lumot kiriting!");
+        return;
+      }
+
+      cart.items.push({ name, price });
+      updateCart();
+
+      document.getElementById("name").value = "";
+      document.getElementById("price").value = "";
+    }
+
+    function updateCart() {
+      const list = document.getElementById("list");
+      const totalEl = document.getElementById("total");
+
+      list.innerHTML = "";
+      let total = 0;
+
+      for (let item of cart.items) {
+        total += item.price;
+        const li = document.createElement("li");
+        li.textContent = `${item.name}: ${item.price.toLocaleString("uz-UZ")} so‘m`;
+        list.appendChild(li);
+      }
+
+      totalEl.textContent = `Jami: ${total.toLocaleString("uz-UZ")} so‘m`;
+    }
+
+    function clearCart() {
+      cart.items = [];
+      document.getElementById("list").innerHTML = "";
+      document.getElementById("total").textContent = "Jami: 0 so‘m";
+      document.getElementById("name").value = "";
+      document.getElementById("price").value = "";
+    }
+  </script>
+</body>
+</html>
