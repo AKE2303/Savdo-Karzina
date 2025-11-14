@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Responsive Savdo Karzinka</title>
+
 <style>
   body {
     font-family: "Poppins", sans-serif;
@@ -79,7 +80,12 @@
     text-align: right;
   }
 
-  /* Mobile devices (iPhone, Samsung) */
+  footer {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
   @media (max-width: 480px) {
     h2 { font-size: 22px; }
     input { font-size: 14px; padding: 8px; }
@@ -87,7 +93,6 @@
     .total { font-size: 18px; }
   }
 
-  /* Small tablets */
   @media (max-width: 768px) {
     h2 { font-size: 24px; }
     input { font-size: 15px; padding: 9px; }
@@ -95,7 +100,6 @@
     .total { font-size: 19px; }
   }
 
-  /* Large screens (Mac, PC) */
   @media (min-width: 1200px) {
     .container { max-width: 500px; padding: 30px; }
     h2 { font-size: 28px; }
@@ -105,24 +109,29 @@
   }
 </style>
 </head>
+
 <body>
+
 <div class="container">
   <h2>🛒 Savdo Karzinka</h2>
+
   <input type="text" id="name" placeholder="Mahsulot nomi" />
   <input type="number" id="price" placeholder="Narxi (so'm)" />
+
   <div>
     <button onclick="addItem()">Qo‘shish</button>
     <button onclick="clearCart()">Tozalash</button>
   </div>
+
   <ul id="list"></ul>
+
   <div class="total" id="total">Jami: 0 so‘m</div>
-</div>
 
   <footer>
-    <p>  2025 Savdo-Karzina | Azam tomonidan</p>
+    <p>2025 Savdo-Karzinka | Azam tomonidan</p>
   </footer>
+</div>
 
-  
 <script>
   const cart = { items: [] };
 
@@ -167,6 +176,6 @@
     document.getElementById("price").value = "";
   }
 </script>
+
 </body>
 </html>
-
